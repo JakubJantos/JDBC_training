@@ -10,6 +10,15 @@ public class TeacherResultSetExtractor implements ResultSetExtractor<Optional<Te
 
   @Override
   public Optional<Teacher> extractData(ResultSet rs) throws SQLException {
-    throw new UnsupportedOperationException("To be implemented.");
+
+    if (rs.next()) {
+      return Optional.of(new Teacher(
+              rs.getLong("id"),
+              rs.getString("first_name"),
+              rs.getString("last_name")
+      ));
+    }else {
+      return Optional.empty();
+    }
   }
 }
